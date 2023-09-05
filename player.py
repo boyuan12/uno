@@ -8,13 +8,12 @@ class Player:
         self.cards = cards
         self.deck = create_all_cards()
 
-
     def print_cards(self):
         for card in self.cards:
             print(colored(card.get_card_text(), card.color))
 
     def prompt_card(self, previous_card, game):
-        if previous_card != None:
+        if previous_card.color != "white":
             print("The previous card is: " + colored(previous_card.get_card_text(), previous_card.color))
         card = input("Type a card you want to play: (format: number/name - color). If there's not an usable card, please type draw to get a new card: ")
         while not self.check_card_valid(card, previous_card, game):
@@ -34,7 +33,7 @@ class Player:
             if previous_card != None: # need to handle special card, such as everything, stack, etc.
                 if str(c) == card and (previous_card.color == c.color or previous_card.number == c.number):
                     if c.special_ability == "reverse":
-                        game.reverse()
+                        print("1111111")
                     if c.special_ability == "skip":
                         game.skip()
                     return True
