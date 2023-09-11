@@ -44,7 +44,7 @@ class Game:
             return False
 
     def reverse(self):
-        if self.turn == "clockwise":
+        if "clockwise" in self.turn:
             self.turn = "counterclockwise"
         else:
             self.turn = "clockwise"
@@ -81,7 +81,7 @@ class Game:
 
     def player1_play(self):
         print("Player 1, please make your choice. ")
-        print("Current direction: ", self.turn)
+        print("Current direction:", self.turn)
         self.player1.print_cards()
         self.previous_card = self.player1.prompt_card(self.previous_card, self)
         clear()

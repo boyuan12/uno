@@ -30,10 +30,10 @@ class Player:
 
     def check_card_valid(self, card: str, previous_card, game):
         for c in self.cards:
-            if previous_card != None: # need to handle special card, such as everything, stack, etc.
+            if previous_card.color != "white": # need to handle special card, such as everything, stack, etc.
                 if str(c) == card and (previous_card.color == c.color or previous_card.number == c.number):
                     if c.special_ability == "reverse":
-                        print("1111111")
+                        game.reverse()
                     if c.special_ability == "skip":
                         game.skip()
                     return True
