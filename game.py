@@ -12,6 +12,7 @@ class Game:
         self.turn = "clockwise" # can be clockwise (1, 2, 3, 4) or counterclockwise (4, 3, 2, 1)
         self.previous_player = 4
         self.player_override = 0 # override to this player
+        self.actions = None # do this first BEFORE prompting next user to pick card
 
     def play(self):
 
@@ -82,6 +83,18 @@ class Game:
     def player1_play(self):
         print("Player 1, please make your choice. ")
         print("Current direction:", self.turn)
+
+        if self.actions == "+2":
+            self.player1.draw_card()
+            self.player1.draw_card()
+            print("You received 2 additional cards")
+            self.action = None
+        elif self.actions == "+4":
+            for i in range(4):
+                self.player1.draw_card()
+            print("You received 4 additional cards")
+            self.action = None
+        
         self.player1.print_cards()
         self.previous_card = self.player1.prompt_card(self.previous_card, self)
         clear()
@@ -92,10 +105,26 @@ class Game:
             self.reverse()
         elif self.previous_card.special_ability == "skip":
             self.skip()
+        elif self.previous_card.special_ability == "+2":
+            self.actions = "+2"
+        elif self.previous_card.special_ability == "wild+4":
+            self.actions = "+4"
 
     def player2_play(self):
         print("Player 2, please make your choice. ")
         print("Current direction: ", self.turn)
+
+        if self.actions == "+2":
+            self.player2.draw_card()
+            self.player2.draw_card()
+            print("You received 2 additional cards")
+            self.action = None
+        elif self.actions == "+4":
+            for i in range(4):
+                self.player2.draw_card()
+            print("You received 4 additional cards")
+            self.action = None
+
         self.player2.print_cards()
         self.previous_card = self.player2.prompt_card(self.previous_card, self)
         clear()
@@ -105,10 +134,26 @@ class Game:
             self.reverse()
         elif self.previous_card.special_ability == "skip":
             self.skip()
-    
+        elif self.previous_card.special_ability == "+2":
+            self.actions = "+2"
+        elif self.previous_card.special_ability == "wild+4":
+            self.actions = "+4"
+        
     def player3_play(self):
         print("Player 3, please make your choice. ")
         print("Current direction: ", self.turn)
+
+        if self.actions == "+2":
+            self.player3.draw_card()
+            self.player3.draw_card()
+            print("You received 2 additional cards")
+            self.action = None
+        elif self.actions == "+4":
+            for i in range(4):
+                self.player3.draw_card()
+            print("You received 4 additional cards")
+            self.action = None
+
         self.player3.print_cards()
         self.previous_card = self.player3.prompt_card(self.previous_card, self)
         clear()
@@ -118,10 +163,27 @@ class Game:
             self.reverse()
         elif self.previous_card.special_ability == "skip":
             self.skip()
-    
+        elif self.previous_card.special_ability == "+2":
+            self.actions = "+2"
+        elif self.previous_card.special_ability == "wild+4":
+            self.actions = "+4"
+
+
     def player4_play(self):
         print("Player 4, please make your choice. ")
         print("Current direction: ", self.turn)
+
+        if self.actions == "+2":
+            self.player4.draw_card()
+            self.player4.draw_card()
+            print("You received 2 additional cards")
+            self.action = None
+        elif self.actions == "+4":
+            for i in range(4):
+                self.player4.draw_card()
+            print("You received 4 additional cards")
+            self.action = None
+
         self.player4.print_cards()
         self.previous_card = self.player4.prompt_card(self.previous_card, self)
         clear()
@@ -131,3 +193,7 @@ class Game:
             self.reverse()
         elif self.previous_card.special_ability == "skip":
             self.skip()
+        elif self.previous_card.special_ability == "+2":
+            self.actions = "+2"
+        elif self.previous_card.special_ability == "wild+4":
+            self.actions = "+4"
